@@ -23,4 +23,20 @@ CREATE TABLE notas (
     PRIMARY KEY (alumno_id, ccee_id)
 );
 
+-- Carga inicial de datos de prueba:
+ INSERT INTO alumnos (nombre)
+ VALUES ('Agustin'),
+        ('Antonio'),
+        ('Enrique');
+
+ INSERT INTO ccee (ce, descripcion)
+ VALUES ('aaaa', 'programacion'),
+        ('bbbb', 'contabilidad'),
+        ('cccc', 'RRHH');
+
+INSERT INTO notas (alumno_id, ccee_id, nota)
+VALUES ('1', '1', '6.2'),
+       ('1', '2', '7.5'),
+       ('1', '3', '5.5');
+
 
