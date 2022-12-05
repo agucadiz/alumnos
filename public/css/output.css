@@ -1165,6 +1165,22 @@ input:checked + .toggle-bg {
   margin-bottom: 0.25rem;
 }
 
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.mt-96 {
+  margin-top: 24rem;
+}
+
+.mt-20 {
+  margin-top: 5rem;
+}
+
+.mt-48 {
+  margin-top: 12rem;
+}
+
 .block {
   display: block;
 }
@@ -1464,11 +1480,6 @@ input:checked + .toggle-bg {
 .bg-red-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(224 36 36 / var(--tw-bg-opacity));
-}
-
-.bg-green-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(5 122 85 / var(--tw-bg-opacity));
 }
 
 .bg-red-100 {

@@ -22,12 +22,44 @@
     <?php
     require '../vendor/autoload.php';
 
+    $nombre = obtener_get('nombre');
+    ?>
+
+    <div class="container mx-auto mt-10">
+        <h1>Búsqueda</h1>
+        <form action="" method="get">
+            <div class="mb-2">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Nombre:
+                    <input type="text" name="nombre" value="<?= hh($nombre) ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-50 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                </label>
+            </div>
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Buscar</button>
+        </form>
+    </div>
+
+    <?php
     $pdo = conectar();
-    $sent = $pdo->query("SELECT * FROM alumnos ORDER BY id");
+    $pdo->beginTransaction();
+    $pdo->exec('LOCK TABLE alumnos IN SHARE MODE');
+    $where = [];
+    $execute = [];
+    if (isset($nombre) && $nombre != '') {
+        $where[] = 'lower(nombre) LIKE lower(:nombre)';
+        $execute[':nombre'] = "%$nombre%";
+    }
+    $where = !empty($where) ? 'WHERE ' . implode(' AND ', $where) : '';
+    $sent = $pdo->prepare("SELECT COUNT(*) FROM alumnos $where");
+    $sent->execute($execute);
+    $total = $sent->fetchColumn();
+    $sent = $pdo->prepare("SELECT * FROM alumnos $where ORDER BY id");
+    $sent->execute($execute);
+    $pdo->commit();
     ?>
 
     <!-- Tabla alumnos  -->
-    <div class="container mx-auto relative mt-6 shadow-md sm:rounded-lg">
+    <div class="container mx-auto relative mt-10 shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <th scope="col" class="py-3 px-6">Nombre</th>
@@ -42,7 +74,7 @@
                         <td class="py-4 px-6 text-center">
                             <a href="modificar.php?id=<?= $fila['id'] ?>&nombrem=<?= $fila['nombre'] ?>" class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900">
                                 Editar</a>
-                        <!-- Eliminar alumnos  -->
+                            <!-- Eliminar alumnos  -->
                             <form action="borrar.php" method="POST" class="inline">
                                 <input type="hidden" name="id" value="<?= hh($fila['id']) ?>">
                                 <button type="submit" onclick="cambiar(event, <?= hh($fila['id']) ?>)" data-modal-toggle="popup-modal-borrar" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
@@ -66,7 +98,7 @@
         </table>
     </div>
 
-    <!-- Ventana modal Borrar-->               
+    <!-- Ventana modal Borrar-->
     <div id="popup-modal-borrar" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 md:inset-0 h-modal md:h-full">
         <div class="relative p-4 w-full max-w-md h-full md:h-auto">
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
