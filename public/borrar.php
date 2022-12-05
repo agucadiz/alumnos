@@ -1,6 +1,7 @@
-<?php 
+<?php
 
 require '../vendor/autoload.php';
+
 use App\Tablas\Alumno;
 
 $id = obtener_post('id');

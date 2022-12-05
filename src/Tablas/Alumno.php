@@ -42,5 +42,4 @@ class Alumno
                                      WHERE id = :id");
         $sent->execute([':id' => $id]);
     }
-
 }
