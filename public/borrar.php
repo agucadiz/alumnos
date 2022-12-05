@@ -16,6 +16,6 @@ $pdo = conectar();
 
 Alumno::borrar($id);
 
-$_SESSION['exito'] = 'El alumnos se ha borrado correctamente.';
+$_SESSION['exito'] = 'El alumno se ha borrado correctamente.';
 
 volver();
