@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require '../vendor/autoload.php';
 
 use App\Tablas\Alumno;
@@ -13,5 +15,7 @@ if (!isset($id)) {
 $pdo = conectar();
 
 Alumno::borrar($id);
+
+$_SESSION['exito'] = 'El alumnos se ha borrado correctamente.';
 
 volver();
