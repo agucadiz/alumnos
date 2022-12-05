@@ -40,7 +40,7 @@
                         <td class="py-4 px-6"><?= hh($fila['nombre']) ?></td>
                         <!-- Modificar alumnos  -->
                         <td class="py-4 px-6 text-center">
-                            <a href="modificar.php?id=<?= hh($fila['id']) ?>" class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900">
+                            <a href="modificar.php?id=<?= $fila['id'] ?>&nombrem=<?= $fila['nombre'] ?>" class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900">
                                 Editar</a>
                         <!-- Eliminar alumnos  -->
                             <form action="borrar.php" method="POST" class="inline">
