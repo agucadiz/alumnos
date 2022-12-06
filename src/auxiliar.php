@@ -1,4 +1,9 @@
 <?php
+/**
+ * @author Agustín Pedrote Bejarano
+ * @copyright Copyright (c) 2022 Agustín Pedrote Bejarano
+ * @license https://www.gnu.org/licenses/gpl.txt
+ */
 
 function conectar()
 {

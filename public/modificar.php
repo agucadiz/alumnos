@@ -27,7 +27,7 @@
 
   if (isset($nombre) && $nombre != '') {
     \App\Tablas\Alumno::modificar($id, $nombre, $pdo);
-    $_SESSION['exito'] = "Alumno modificado con éxito.";
+    $_SESSION['exito'] = "El alumno se ha modificado correctamente.";
     return volver();
   }
   ?>

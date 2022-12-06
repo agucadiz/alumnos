@@ -19,7 +19,7 @@
 
     if (isset($nombre) && $nombre != '') {
         \App\Tablas\Alumno::insertar($nombre);
-        $_SESSION['exito'] = "Alumno añadido con éxito.";
+        $_SESSION['exito'] = "El alumno se ha añadido correctamente.";
         return volver();
     }
     ?>
