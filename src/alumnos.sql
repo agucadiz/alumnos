@@ -23,6 +23,14 @@ CREATE TABLE notas (
     PRIMARY KEY (alumno_id, ccee_id)
 );
 
+DROP TABLE IF EXISTS usuarios CASCADE;
+
+CREATE TABLE usuarios (
+    id       bigserial    PRIMARY KEY,
+    usuario  varchar(255) NOT NULL UNIQUE,
+    password varchar(255) NOT NULL
+);
+
 -- Carga inicial de datos de prueba:
  INSERT INTO alumnos (nombre)
  VALUES ('Agustin'),
@@ -38,5 +46,9 @@ INSERT INTO notas (alumno_id, ccee_id, nota)
 VALUES ('1', '1', '6.2'),
        ('1', '2', '7.5'),
        ('1', '3', '5.5');
+
+INSERT INTO usuarios (usuario, password)
+    VALUES ('admin', crypt('admin', gen_salt('bf', 10))),
+           ('pepe', crypt('pepe', gen_salt('bf', 10)));
 
 

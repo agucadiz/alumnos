@@ -12,12 +12,6 @@
             const oculto = document.getElementById('oculto');
             oculto.setAttribute('value', id);
         }
-
-        function cambiarModificar(el, id) {
-            el.preventDefault();
-            const ocultoModificar = document.getElementById('ocultoModificar');
-            ocultoModificar.setAttribute('value', id);
-        }
     </script>
     <title>Alumnos</title>
 </head>
@@ -26,7 +20,9 @@
 
     <?php
     require '../vendor/autoload.php';
+    require '../src/_menu.php'; // Menú login.
     require_once '../src/_alerts.php'; //alertas error y exito.
+     
 
     $nombre = obtener_get('nombre');
     ?>
