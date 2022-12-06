@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -18,6 +19,7 @@
 
     if (isset($nombre) && $nombre != '') {
         \App\Tablas\Alumno::insertar($nombre);
+        $_SESSION['exito'] = "Alumno añadido con éxito.";
         return volver();
     }
     ?>

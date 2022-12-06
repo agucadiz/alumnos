@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -21,11 +22,12 @@
 
   if ($nombre == $nombrem) {
     unset($_SESSION['error']);
-    $_SESSION['error'] = 'El nombre de alumno introducido es el mismo.';   
+    $_SESSION['error'] = 'El alumno no se ha modificado.';   
   }
 
   if (isset($nombre) && $nombre != '') {
     \App\Tablas\Alumno::modificar($id, $nombre, $pdo);
+    $_SESSION['exito'] = "Alumno modificado con éxito.";
     return volver();
   }
   ?>

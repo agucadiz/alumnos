@@ -6,12 +6,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/output.css" rel="stylesheet">
     <script>
         function cambiar(el, id) {
             el.preventDefault();
             const oculto = document.getElementById('oculto');
             oculto.setAttribute('value', id);
+        }
+
+        function cambiarModificar(el, id) {
+            el.preventDefault();
+            const ocultoModificar = document.getElementById('ocultoModificar');
+            ocultoModificar.setAttribute('value', id);
         }
     </script>
     <title>Alumnos</title>
@@ -21,6 +26,7 @@
 
     <?php
     require '../vendor/autoload.php';
+    require_once '../src/_alerts.php'; //alertas error y exito.
 
     $nombre = obtener_get('nombre');
     ?>
@@ -87,6 +93,7 @@
                 <?php endforeach ?>
 
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <!-- Total alumnos -->
                     <td>Número total de filas: <?= hh($total) ?></td>
                     <td class="py-4 px-6 text-center">
                         <!-- Insertar Alumnos -->
@@ -127,7 +134,9 @@
         </div>
     </div>
 
-    <script src="js/flowbite/flowbite.js"></script>
+    <!--CSS y JS-->
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
+    <script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
 
 </body>
 
