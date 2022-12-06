@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/output.css" rel="stylesheet">
     <script>
         function cambiar(el, id) {
             el.preventDefault();
@@ -130,9 +131,8 @@
         </div>
     </div>
 
-    <!--CSS y JS-->
-    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
-    <script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
+    <!--JS-->
+    <script src="/js/flowbite/flowbite.js"></script>
 
 </body>
 
