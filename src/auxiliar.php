@@ -5,16 +5,19 @@
  * @license https://www.gnu.org/licenses/gpl.txt
  */
 
+ //Conectar a base de datos.
 function conectar()
 {
     return new \PDO('pgsql:host=localhost,dbname=alumnos', 'alumnos', 'alumnos');
 }
 
+//Evitar inyeccioón de código malicioso.
 function hh($x)
 {
     return htmlspecialchars($x ?? '', ENT_QUOTES | ENT_SUBSTITUTE);
 }
 
+//CRUD.
 function obtener_get($par)
 {
     return obtener_parametro($par, $_GET);
@@ -33,4 +36,10 @@ function obtener_parametro($par, $array)
 function volver()
 {
     header('Location: /index.php');
+}
+
+//Registrar
+function redirigir_login()
+{
+    header('Location: /login.php');
 }
