@@ -23,7 +23,7 @@
     require '../../vendor/autoload.php';
     require '../../src/_menu.php'; // Menú login.
     require_once '../../src/_alerts.php'; //alertas error y exito.
-     
+
 
     $nombre = obtener_get('nombre');
     ?>
@@ -53,10 +53,14 @@
         $execute[':nombre'] = "%$nombre%";
     }
     $where = !empty($where) ? 'WHERE ' . implode(' AND ', $where) : '';
+    //consulta buscador.
     $sent = $pdo->prepare("SELECT COUNT(*) FROM alumnos $where");
     $sent->execute($execute);
     $total = $sent->fetchColumn();
-    $sent = $pdo->prepare("SELECT * FROM alumnos $where ORDER BY id");
+    //consulta tabla.
+    $sent = $pdo->prepare("SELECT alumnos.id, nombre, ROUND(AVG(nota),2) 
+                           FROM alumnos LEFT JOIN notas ON alumnos.id=notas.alumno_id 
+                           $where GROUP BY alumnos.id ORDER BY alumnos.id");
     $sent->execute($execute);
     $pdo->commit();
     ?>
@@ -66,6 +70,7 @@
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <th scope="col" class="py-3 px-6">Nombre</th>
+                <th scope="col" class="py-3 px-6">Nota</th>
                 <th scope="col" class="py-3 px-6 text-center">Opciones</th>
             </thead>
             <tbody>
@@ -73,8 +78,10 @@
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <!-- Nombre alumno -->
                         <td class="py-4 px-6"><?= hh($fila['nombre']) ?></td>
-                        <!-- Modificar alumnos  -->
+                        <!-- Nota -->
+                        <td class="py-4 px-6"><?= hh($fila['round']) ?></td>
                         <td class="py-4 px-6 text-center">
+                            <!-- Modificar alumnos  -->
                             <a href="modificar.php?id=<?= $fila['id'] ?>&nombrem=<?= $fila['nombre'] ?>" class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900">
                                 Editar</a>
                             <!-- Eliminar alumnos  -->
@@ -91,6 +98,7 @@
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <!-- Total alumnos -->
                     <td>Número total de filas: <?= hh($total) ?></td>
+                    <td></td>
                     <td class="py-4 px-6 text-center">
                         <!-- Insertar Alumnos -->
                         <a href="insertar.php" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">

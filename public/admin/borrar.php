@@ -12,7 +12,7 @@ if (!isset($id)) {
     return volver_admin();
 }
 
-// TODO. Comprobar si el alumno tiene notas.
+// Comprobar si el alumno tiene notas.
 $pdo = conectar();
 $pdo->beginTransaction();
 $pdo->exec('LOCK TABLE notas IN SHARE MODE');
