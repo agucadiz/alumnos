@@ -13,14 +13,14 @@
 <body>
 
     <?php
-    require '../vendor/autoload.php';
+    require '../../vendor/autoload.php';
 
     $nombre = obtener_post('nombre');
 
     if (isset($nombre) && $nombre != '') {
         \App\Tablas\Alumno::insertar($nombre);
         $_SESSION['exito'] = "El alumno se ha añadido correctamente.";
-        return volver();
+        return volver_admin();
     }
     ?>
 

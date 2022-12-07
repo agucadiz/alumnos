@@ -12,7 +12,7 @@
 
 <body>
   <?php
-  require '../vendor/autoload.php';
+  require '../../vendor/autoload.php';
 
   $pdo = conectar();
 
@@ -28,7 +28,7 @@
   if (isset($nombre) && $nombre != '') {
     \App\Tablas\Alumno::modificar($id, $nombre, $pdo);
     $_SESSION['exito'] = "El alumno se ha modificado correctamente.";
-    return volver();
+    return volver_admin();
   }
   ?>
 

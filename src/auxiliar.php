@@ -38,6 +38,12 @@ function volver()
     header('Location: /index.php');
 }
 
+//login
+function volver_admin()
+{
+    header("Location: /admin/");
+}
+
 //Registrar
 function redirigir_login()
 {
