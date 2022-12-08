@@ -53,14 +53,16 @@
         $execute[':nombre'] = "%$nombre%";
     }
     $where = !empty($where) ? 'WHERE ' . implode(' AND ', $where) : '';
-    //consulta buscador.
+    //Consulta buscador.
     $sent = $pdo->prepare("SELECT COUNT(*) FROM alumnos $where");
     $sent->execute($execute);
     $total = $sent->fetchColumn();
-    //consulta tabla.
+    //Consulta tabla. Nota final.
     $sent = $pdo->prepare("SELECT alumnos.id, nombre, ROUND(AVG(nota),2) 
                            FROM alumnos LEFT JOIN notas ON alumnos.id=notas.alumno_id 
-                           $where GROUP BY alumnos.id ORDER BY alumnos.id");
+                           $where 
+                           GROUP BY alumnos.id 
+                           ORDER BY alumnos.id");
     $sent->execute($execute);
     $pdo->commit();
     ?>
@@ -76,10 +78,10 @@
             <tbody>
                 <?php foreach ($sent as $fila) : ?>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <!-- Nombre alumno -->
-                        <td class="py-4 px-6"><?= hh($fila['nombre']) ?></td>
+                        <!-- Nombre alumno y link a criterios--> 
+                        <td class="py-4 px-6"><a href="criterios.php?id=<?= $fila['id'] ?>"> <?=hh($fila['nombre'])?> </a></td>
                         <!-- Nota -->
-                        <td class="py-4 px-6"><?= hh($fila['round']) ?></td>
+                        <td class="py-4 px-6"> <?=hh($fila['round'])?> </td>
                         <td class="py-4 px-6 text-center">
                             <!-- Modificar alumnos  -->
                             <a href="modificar.php?id=<?= $fila['id'] ?>&nombrem=<?= $fila['nombre'] ?>" class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900">
