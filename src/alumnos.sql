@@ -16,11 +16,11 @@ CREATE TABLE ccee (
 DROP TABLE IF EXISTS notas CASCADE;
 
 CREATE TABLE notas (
-    id          bigserial     NOT NULL UNIQUE,
+    id          bigserial     PRIMARY KEY,
     alumno_id   bigint        NOT NULL REFERENCES alumnos (id),
     ccee_id     bigint        NOT NULL REFERENCES ccee (id),
     nota        numeric(4, 2) NOT NULL,
-    PRIMARY KEY (alumno_id, ccee_id)
+    UNIQUE (alumno_id, ccee_id)
 );
 
 DROP TABLE IF EXISTS usuarios CASCADE;
