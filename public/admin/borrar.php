@@ -14,8 +14,6 @@ if (!isset($id)) {
 
 // Comprobar si el alumno tiene notas.
 $pdo = conectar();
-$pdo->beginTransaction();
-$pdo->exec('LOCK TABLE notas IN SHARE MODE');
 $sent = $pdo->prepare("SELECT COUNT(*) 
                        FROM alumnos 
                        JOIN notas 
