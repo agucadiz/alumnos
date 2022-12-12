@@ -2,7 +2,8 @@ DROP TABLE IF EXISTS alumnos CASCADE;
 
 CREATE TABLE alumnos (
     id          bigserial     PRIMARY KEY,
-    nombre      varchar(255)  NOT NULL
+    nombre      varchar(255)  NOT NULL,
+    fecha_nac   TIMESTAMP     NOT NULL
 );
 
 DROP TABLE IF EXISTS ccee CASCADE;
@@ -32,10 +33,10 @@ CREATE TABLE usuarios (
 );
 
 -- Carga inicial de datos de prueba:
- INSERT INTO alumnos (nombre)
- VALUES ('Agustin'),
-        ('Antonio'),
-        ('Enrique');
+ INSERT INTO alumnos (nombre, fecha_nac)
+ VALUES ('Agustin', '1982-12-01 13:40:12'),
+        ('Antonio', '1995-11-16 00:00:00'),
+        ('Enrique', '1999-07-30 01:04:09');
 
  INSERT INTO ccee (ce, descripcion)
  VALUES ('aaaa', 'programacion'),

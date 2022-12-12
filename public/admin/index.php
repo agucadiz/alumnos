@@ -58,7 +58,7 @@
     $sent->execute($execute);
     $total = $sent->fetchColumn();
     //Consulta tabla. Nota final.
-    $sent = $pdo->prepare("SELECT alumnos.id, nombre, ROUND(AVG(nota),2) 
+    $sent = $pdo->prepare("SELECT alumnos.id, nombre, fecha_nac, ROUND(AVG(nota),2) 
                            FROM alumnos LEFT JOIN notas ON alumnos.id=notas.alumno_id 
                            $where 
                            GROUP BY alumnos.id 
@@ -72,6 +72,7 @@
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <th scope="col" class="py-3 px-6">Nombre</th>
+                <th scope="col" class="py-3 px-6">F. nacimiento</th>
                 <th scope="col" class="py-3 px-6">Nota</th>
                 <th scope="col" class="py-3 px-6 text-center">Opciones</th>
             </thead>
@@ -80,6 +81,8 @@
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <!-- Nombre alumno y link a criterios--> 
                         <td class="py-4 px-6"><a href="criterios.php?id=<?= $fila['id'] ?>"> <?=hh($fila['nombre'])?> </a></td>
+                         <!-- Fecha nacimiento -->
+                         <td class="py-4 px-6"> <?=hh(mostrar_fecha($fila['fecha_nac']))?> </td>
                         <!-- Nota -->
                         <td class="py-4 px-6"> <?=hh($fila['round'])?> </td>
                         <td class="py-4 px-6 text-center">
@@ -100,6 +103,7 @@
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <!-- Total alumnos -->
                     <td>Número total de filas: <?= hh($total) ?></td>
+                    <td></td>
                     <td></td>
                     <td class="py-4 px-6 text-center">
                         <!-- Insertar Alumnos -->

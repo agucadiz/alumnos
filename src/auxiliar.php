@@ -49,3 +49,11 @@ function redirigir_login()
 {
     header('Location: /login.php');
 }
+
+//Fecha nacimiento
+function mostrar_fecha($timestamp)
+{
+    $fechaComoEntero = strtotime($timestamp);
+    $anio = date("d-m-Y", $fechaComoEntero);
+    return $anio;
+}
