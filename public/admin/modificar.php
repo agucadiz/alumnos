@@ -20,6 +20,7 @@
   $nombrem = obtener_get('nombrem');
   $nombre = obtener_post('nombre');
 
+  //No se hace el triple igual en los dos if, probar.
   if ($nombre == $nombrem) {
     unset($_SESSION['error']);
     $_SESSION['error'] = 'El alumno no se ha modificado.';   

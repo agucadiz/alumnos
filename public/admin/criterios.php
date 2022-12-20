@@ -17,13 +17,14 @@
 
     $pdo = conectar();
     $id = obtener_get('id');
+
     //Consulta para los criterios y calificaciones.
     //Aparte del prepare/execute esta tb el query, consulta simple.
     $sent = $pdo->prepare("SELECT alumno_id, descripcion, nota 
-                         FROM notas 
-                         JOIN ccee ON notas.ccee_id=ccee.id 
-                         WHERE alumno_id = :id 
-                         ORDER BY descripcion");
+                           FROM notas 
+                           JOIN ccee ON notas.ccee_id=ccee.id 
+                           WHERE alumno_id = :id 
+                           ORDER BY descripcion");
     $sent->execute([':id' => $id]);
     ?>
 
@@ -46,8 +47,6 @@
             </tbody>
         </table>
     </div>
-
-
 
 
     <!--JS-->
