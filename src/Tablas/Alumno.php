@@ -26,14 +26,14 @@ class Alumno
         $sent->execute([':nombre' => $nombre, ':fecha_nac' => $fecha_nac]);
     }
 
-    public static function modificar($id, $nombre, ?PDO $pdo = null)
+    public static function modificar($id, $nombre, $fecha_nac, ?PDO $pdo = null)
     {
         $pdo = $pdo ?? conectar();
 
         $sent = $pdo->prepare("UPDATE alumnos 
-                                  SET nombre= :nombre
+                                  SET nombre = :nombre, fecha_nac = :fecha_nac
                                 WHERE id = :id");
-        $sent->execute([':id' => $id, ':nombre' => $nombre]);
+        $sent->execute([':id' => $id, ':nombre' => $nombre, 'fecha_nac' => $fecha_nac]);
     }
 
     public static function borrar($id, ?PDO $pdo = null)
