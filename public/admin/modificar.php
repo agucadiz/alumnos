@@ -21,7 +21,7 @@
   $nombre = obtener_post('nombre');
   $fecha_nac = obtener_post('fecha_nac');
 
-  if (isset($nombre) && $nombre != '' OR isset($fecha_nac) && $fecha_nac != '') {
+  if (isset($nombre) && $nombre != '' && isset($fecha_nac) && $fecha_nac != '') {
     \App\Tablas\Alumno::modificar($id, $nombre, $fecha_nac, $pdo);
     $_SESSION['exito'] = "El alumno se ha modificado correctamente.";
     return volver_admin();
