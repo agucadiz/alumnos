@@ -1187,6 +1187,10 @@ input:checked + .toggle-bg {
   margin-top: 1.25rem;
 }
 
+.mt-4 {
+  margin-top: 1rem;
+}
+
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -1197,10 +1201,6 @@ input:checked + .toggle-bg {
 
 .ml-1 {
   margin-left: 0.25rem;
-}
-
-.mt-4 {
-  margin-top: 1rem;
 }
 
 .mb-1 {
@@ -2294,6 +2294,11 @@ input:checked + .toggle-bg {
 .dark .dark\:focus\:ring-gray-600:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(75 85 99 / var(--tw-ring-opacity));
+}
+
+.dark .dark\:focus\:ring-green-900:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(1 71 55 / var(--tw-ring-opacity));
 }
 
 @media (min-width: 640px) {

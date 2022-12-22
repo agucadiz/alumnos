@@ -29,7 +29,8 @@ DROP TABLE IF EXISTS usuarios CASCADE;
 CREATE TABLE usuarios (
     id       bigserial    PRIMARY KEY,
     usuario  varchar(255) NOT NULL UNIQUE,
-    password varchar(255) NOT NULL
+    password varchar(255) NOT NULL,
+    validado bool         NOT NULL
 );
 
 -- Carga inicial de datos de prueba:
@@ -51,8 +52,8 @@ VALUES ('1', '1', '6.2'),
        ('2', '2', '7.5'),
        ('2', '3', '8.2');
 
-INSERT INTO usuarios (usuario, password)
-    VALUES ('admin', crypt('admin', gen_salt('bf', 10))),
-           ('pepe', crypt('pepe', gen_salt('bf', 10)));
+INSERT INTO usuarios (usuario, password, validado)
+    VALUES ('admin', crypt('admin', gen_salt('bf', 10)), true),
+           ('pepe', crypt('pepe', gen_salt('bf', 10)), false);
 
 
